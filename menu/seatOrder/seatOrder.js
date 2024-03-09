@@ -10,6 +10,14 @@ let dumplingsType = projectDataList.filter((x) => {return x.type === "dumplings"
 
 let basket = JSON.parse(localStorage.getItem("data")) || [] ;
 
+//桌號顯示
+let displaySeatNum = () => {
+    let seatNum = sessionStorage.getItem("seatNum");
+    document.getElementById("table-number").innerHTML = seatNum;
+}
+displaySeatNum()
+
+
 // 生成品項
 let generateMenuCard = (dom, datalist) => {
     return dom.innerHTML = datalist.map((x) => {//slice選取projectDataList內部分物件
