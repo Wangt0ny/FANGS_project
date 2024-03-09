@@ -9,7 +9,7 @@ let vegetableType = projectDataList.filter((x) => {return x.type === "vegetable"
 let dumplingsType = projectDataList.filter((x) => {return x.type === "dumplings"});
 
 let basket = JSON.parse(localStorage.getItem("data")) || [] ;
-console.log(basket)
+
 
 //桌號顯示
 let displaySeatNum = () => {
@@ -86,6 +86,7 @@ let increment = (id) => {
     }
     updata(productItem.id);
     generateCartItem(orderList);
+    cartTotal();
 
     localStorage.setItem("data", JSON.stringify(basket));
 };
@@ -110,7 +111,9 @@ let decrement = (id) => {
     updata(productItem.id);
     //移除數量為0的物件
     basket = basket.filter((x) => x.item !== 0);//回傳此條件為true的物件
+    
     generateCartItem(orderList);
+    cartTotal();
 
     localStorage.setItem("data", JSON.stringify(basket));
 };
@@ -128,14 +131,15 @@ let updata = (id) => {
 };
 
 //生成購物車商品
-let orderList = document.getElementById("order-list")
+let orderList = document.getElementById("order-list");
+let orderBtnContent = document.getElementById("order-btn-content");
 let generateCartItem = (dom) => {
     //dom參數
     if (basket.length !== 0){
         //cart not empty
         return dom.innerHTML = basket.map((x) => {
             let {id , item} = x;//物件解構賦值變數
-            
+            orderBtnContent.style.display = "block"
             let search = projectDataList.find((y) => y.id === id) || [];
             // console.log(search);
             return `
@@ -154,7 +158,7 @@ let generateCartItem = (dom) => {
     }
     else {
         //cart empty
-        // cartTotle.innerHTML = ``;
+        orderBtnContent.style.display = "none"
         dom.innerHTML = `
         <div class="no-item"><h4>購物車是空的唷</h4></div>
         `;
@@ -162,3 +166,25 @@ let generateCartItem = (dom) => {
 }
 
 generateCartItem(orderList);
+
+//刪除購物車品項
+let removeItem = (id) => {
+    let productItem = id;
+    //移除物件
+    basket = basket.filter((x) => x.id !== productItem.id);
+    
+    updata(productItem.id)
+    generateCartItem(orderList);
+    cartTotal();
+
+    localStorage.setItem("data", JSON.stringify(basket));
+}
+
+//購物車訂單數量顯示
+let cartTotal = () => {
+    let orderQuantity = document.getElementById("order-quantity");
+    let itemAmount = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
+    orderQuantity.innerText = itemAmount;
+    // return itemAmount;
+}
+cartTotal();
