@@ -185,12 +185,36 @@ let removeItem = (id) => {
 
 //購物車訂單數量顯示
 let cartTotal = () => {
-    let cartQuantity = document.getElementById("cart-quantity");
+    let cartQuantity = document.getElementsByClassName("cart-quantity");
     let itemAmount = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
-    cartQuantity.innerText = itemAmount;
-    // return itemAmount;
+    for (let i = 0; i < cartQuantity.length; i++) {
+        cartQuantity[i].innerHTML = itemAmount
+    }
 }
 cartTotal();
+
+// 送出訂單按鈕
+let sentOrderBtn = () => {
+    let cartBtnList = document.getElementsByClassName("cart-btn");
+    for (let i = 0; i < cartBtnList.length; i++) {
+        cartBtnList[i].addEventListener("click", () => {
+            basket = [];
+            localStorage.setItem("data", JSON.stringify(basket));
+            generateOrderItem();
+            generateCartItem(cartList);
+            generateMenuCard(menuMeat, meatType);
+            generateMenuCard(menuSeafood, seafoodType);
+            generateMenuCard(menuVegetable, vegetableType);
+            generateMenuCard(menuDumplings, dumplingsType);
+            if (cartBtnList[i].id) {
+                console.log("notsent")
+            }else {
+                console.log("sent")
+            }
+        })  
+    }
+}
+sentOrderBtn();
 
 //生成訂單品項
 let generateOrderItem = () => {
@@ -222,7 +246,7 @@ let generateOrderItem = () => {
         `;
     }
 }
-generateOrderItem()
+generateOrderItem();
 
 let openOrderPage = () => {
     document.getElementById("open-order-btn").addEventListener("click",() => 
