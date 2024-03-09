@@ -85,8 +85,9 @@ let increment = (id) => {
         search.item += 1;
     }
     updata(productItem.id);
-    generateCartItem(orderList);
+    generateCartItem(cartList);
     cartTotal();
+    generateOrderItem()
 
     localStorage.setItem("data", JSON.stringify(basket));
 };
@@ -112,8 +113,9 @@ let decrement = (id) => {
     //移除數量為0的物件
     basket = basket.filter((x) => x.item !== 0);//回傳此條件為true的物件
     
-    generateCartItem(orderList);
+    generateCartItem(cartList);
     cartTotal();
+    generateOrderItem()
 
     localStorage.setItem("data", JSON.stringify(basket));
 };
@@ -131,15 +133,16 @@ let updata = (id) => {
 };
 
 //生成購物車商品
-let orderList = document.getElementById("order-list");
-let orderBtnContent = document.getElementById("order-btn-content");
+let cartList = document.getElementById("cart-list");
+
 let generateCartItem = (dom) => {
     //dom參數
+    let cartBtnContent = document.getElementById("cart-btn-content");
     if (basket.length !== 0){
         //cart not empty
         return dom.innerHTML = basket.map((x) => {
             let {id , item} = x;//物件解構賦值變數
-            orderBtnContent.style.display = "block"
+            cartBtnContent.style.display = "block"
             let search = projectDataList.find((y) => y.id === id) || [];
             // console.log(search);
             return `
@@ -158,14 +161,14 @@ let generateCartItem = (dom) => {
     }
     else {
         //cart empty
-        orderBtnContent.style.display = "none"
+        cartBtnContent.style.display = "none"
         dom.innerHTML = `
         <div class="no-item"><h4>購物車是空的唷</h4></div>
         `;
     }
 }
 
-generateCartItem(orderList);
+generateCartItem(cartList);
 
 //刪除購物車品項
 let removeItem = (id) => {
@@ -174,7 +177,7 @@ let removeItem = (id) => {
     basket = basket.filter((x) => x.id !== productItem.id);
     
     updata(productItem.id)
-    generateCartItem(orderList);
+    generateCartItem(cartList);
     cartTotal();
 
     localStorage.setItem("data", JSON.stringify(basket));
@@ -182,9 +185,60 @@ let removeItem = (id) => {
 
 //購物車訂單數量顯示
 let cartTotal = () => {
-    let orderQuantity = document.getElementById("order-quantity");
+    let cartQuantity = document.getElementById("cart-quantity");
     let itemAmount = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
-    orderQuantity.innerText = itemAmount;
+    cartQuantity.innerText = itemAmount;
     // return itemAmount;
 }
 cartTotal();
+
+//生成訂單品項
+let generateOrderItem = () => {
+    let orderList = document.getElementById("order-list")
+    if (basket.length !== 0){
+        //cart not empty
+        return orderList.innerHTML = basket.map((x) => {
+            let {id , item} = x;//物件解構賦值變數
+            
+            let search = projectDataList.find((y) => y.id === id) || [];
+            // console.log(search);
+            return `
+                <div class="order-item">
+                    <div class="order-info">
+                        <p class="order-info-title">${search.product}</p>
+                        <div class="order-info-price">$${search.price}</div>
+                    </div>
+                    <div class="order-info-quantity"><span>${item}</span></div>
+                    <i onclick="deleteOrder(${id})" class="bi bi-trash"></i>
+                </div>
+            `
+        }).join("")
+    }
+    else {
+        //cart empty
+        
+        orderList.innerHTML = `
+        <div class="no-item"><h4>訂單是空的唷</h4></div>
+        `;
+    }
+}
+generateOrderItem()
+
+let openOrderPage = () => {
+    document.getElementById("open-order-btn").addEventListener("click",() => 
+    {
+        let orderPage = document.getElementById("order-page");
+        orderPage.style.transform = "translateX(0%)"
+    })
+}
+openOrderPage();
+
+let closeOrderPage = () => {
+    document.getElementById("close-order-btn").addEventListener("click", () => 
+    {
+        let orderPage = document.getElementById("order-page");
+        orderPage.style.transform = "translateX(100%)"
+    })
+}
+closeOrderPage();
+

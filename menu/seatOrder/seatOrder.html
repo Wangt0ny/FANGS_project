@@ -19,22 +19,23 @@
             </div>
             <div class="cart-content">
                 <div class="cart-title">購物車</div>
-                <div class="order-list" id="order-list">
+                <div class="cart-list" id="cart-list">
                     <!-- 自動生成 -->
                 </div>
-                <div id="order-btn-content">
-                    <div id="order-btn">送出<span id="order-quantity">1</span>訂單</div>
+                <div id="cart-btn-content">
+                    <div id="cart-btn">送出<span id="cart-quantity">1</span>訂單</div>
                 </div>
             </div>
         </div>
 
          <!-- end of container -->
-        <div class="right-container">
+        <div class="right-container form-layout">
             <div class="tab">
-                <button id="defaultOpen" class="tablinks"  onclick="openMenu('meat-page')">肉類</button>
+                <button class="tablinks" onclick="openMenu('meat-page')" id="defaultOpen" >肉類</button>
                 <button class="tablinks" onclick="openMenu('seafood-page')">海鮮類</button>
                 <button class="tablinks" onclick="openMenu('vegetable-page')">蔬菜類</button>
                 <button class="tablinks" onclick="openMenu('dumplings-page')">火鍋餃類</button>
+                <button id="open-order-btn">查看訂單</button>
             </div>
             
             
@@ -61,6 +62,24 @@
 
                 </div>
             </div>
+
+            <!-- 訂單畫面 -->
+            <div class="order-page" id="order-page">
+                <i id="close-order-btn" class="bi bi-x-lg"></i>
+                <div class="order-title">訂單</div>
+                <div class="order-list" id="order-list">
+                    <!-- 自動生成 -->
+                    <!-- <div class="order-item">
+                        <div class="order-info">
+                            <p class="order-info-title">product</p>
+                            <div class="order-info-price">$1555</div>
+                        </div>
+                        <div class="order-info-quantity"><span>2</span></div>
+                        <i class="bi bi-trash"></i>
+                    </div> -->
+                </div>
+            </div>
+
         </div>
     </div>
     <script src="/data.js"></script>
