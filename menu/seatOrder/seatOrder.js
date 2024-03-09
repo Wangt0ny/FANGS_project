@@ -9,6 +9,7 @@ let vegetableType = projectDataList.filter((x) => {return x.type === "vegetable"
 let dumplingsType = projectDataList.filter((x) => {return x.type === "dumplings"});
 
 let basket = JSON.parse(localStorage.getItem("data")) || [] ;
+console.log(basket)
 
 //桌號顯示
 let displaySeatNum = () => {
@@ -84,6 +85,7 @@ let increment = (id) => {
         search.item += 1;
     }
     updata(productItem.id);
+    generateCartItem(orderList);
 
     localStorage.setItem("data", JSON.stringify(basket));
 };
@@ -108,6 +110,7 @@ let decrement = (id) => {
     updata(productItem.id);
     //移除數量為0的物件
     basket = basket.filter((x) => x.item !== 0);//回傳此條件為true的物件
+    generateCartItem(orderList);
 
     localStorage.setItem("data", JSON.stringify(basket));
 };
@@ -122,5 +125,40 @@ let updata = (id) => {
     else {
         document.getElementById(id).innerHTML = 0;
     }
-    
 };
+
+//生成購物車商品
+let orderList = document.getElementById("order-list")
+let generateCartItem = (dom) => {
+    //dom參數
+    if (basket.length !== 0){
+        //cart not empty
+        return dom.innerHTML = basket.map((x) => {
+            let {id , item} = x;//物件解構賦值變數
+            
+            let search = projectDataList.find((y) => y.id === id) || [];
+            // console.log(search);
+            return `
+            <div class="cart-item">
+                <img class="cart-item-img" src=${search.img} alt="">
+                <div class="cart-info">
+                    <p class="cart-info-title">${search.product}</p>
+                    <div class="price">
+                        <p>$ ${search.price} x ${item} = ${search.price * item}</p>
+                    </div>
+                </div>
+                <i onclick="removeItem(${id})" class="bi bi-trash"></i>
+            </div>
+            `
+        }).join("")
+    }
+    else {
+        //cart empty
+        // cartTotle.innerHTML = ``;
+        dom.innerHTML = `
+        <div class="no-item"><h4>購物車是空的唷</h4></div>
+        `;
+    }
+}
+
+generateCartItem(orderList);
