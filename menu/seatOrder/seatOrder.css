@@ -400,6 +400,8 @@
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: black;
 }
 
 .bi-arrow-right-short {

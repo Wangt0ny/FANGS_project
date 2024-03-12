@@ -12,9 +12,9 @@
 </head>
 <body>
     <div class="page-wrapper">
-        <div class="navbar-container cart-width">
+        <div class="navbar-container order-width">
             <div class="goback-content">
-                <a href="../seatHome/seatHome.html"><i class="bi bi-arrow-left-short"></i></a>
+                <a href="../seatOrder/seatOrder.html"><i class="bi bi-arrow-left-short"></i></a>
                 <div>桌號<span id="table-number">0</span></div>
             </div>
 
@@ -22,6 +22,15 @@
                 <div class="order-title">訂單</div>
                 <div class="order-list" id="order-list">
                     <!-- 自動生成 -->
+                    <div class="order-item">
+                        <img class="order-item-img" src="" alt="">
+                        <div class="order-info">
+                            <div class="order-info-title">${search.product}</div>
+                            <div> $ ${search.price} x ${item} = ${search.price * item}</div>
+                        </div>
+                        <div class="order-item-quantity">0</div>
+                    </div>
+                    
                 </div>
                 <div class="order-price-info">
                     <div class="order-price-title">訂單金額:
@@ -41,6 +50,9 @@
             <div class="pay-button"><i class="bi bi-coin"></i>現金支付</div>
             <div class="pay-button"><i class="bi bi-credit-card"></i>信用卡支付</div>
         </div>
-    </div> 
+    </div>
+
+    <script src="/data.js"></script>
+    <script src="./seatPay.js"></script>
 </body>
 </html>
