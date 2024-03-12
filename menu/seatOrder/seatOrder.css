@@ -161,9 +161,6 @@
 
 .bi-trash {
     font-size: 24px;
-}
-
-.cart-item > .bi-trash:hover {
     color: red;
 }
 
@@ -381,6 +378,36 @@
 }
 /* scrollbar自定義 */
 
+/* 前往結帳區開始 */
+#order-to-pay-content {
+    /* background-color: pink; */
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+#order-to-pay {
+    border: none;
+    outline: none;
+    background-color: rgba(247, 230, 174, 1);
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 5px 20px;
+    width: calc(100% - 40px);
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}
+
+.bi-arrow-right-short {
+    font-size: 1.5em;
+    margin-left: auto;
+}
+
+/* 前往結帳區結束 */
 .order-item {
     background-color: #fff;
     display: flex;

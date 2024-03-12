@@ -64,7 +64,7 @@ let seatMenu = () => {
         seatOrderList[j].addEventListener("click", function(e) {
             e.stopPropagation();
             console.log(this.id)
-            sessionStorage.setItem("seatNum", this.id)
+            localStorage.setItem("seatNum", this.id)
         })
     }
 }

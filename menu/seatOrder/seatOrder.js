@@ -13,7 +13,7 @@ let basket = JSON.parse(localStorage.getItem("data")) || [] ;
 
 //桌號顯示
 let displaySeatNum = () => {
-    let seatNum = sessionStorage.getItem("seatNum");
+    let seatNum = localStorage.getItem("seatNum");
     document.getElementById("table-number").innerHTML = seatNum;
 }
 displaySeatNum()
