@@ -1,0 +1,88 @@
+.cart-width {
+    width: 50%;
+}
+
+.goback-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+    width: 100%;
+    font-size: 1.5em;
+    background-color: rgba(247, 230, 174, 1);
+}
+
+.goback-content > div {
+    font-weight: 600;
+}
+
+#table-number {
+    margin-left: 5px;
+}
+
+.goback-content > a {
+    text-decoration: none;
+    color: black;
+}
+
+.bi-arrow-left-short {
+    font-size: 2em;
+}
+/* 桌號區結束 */
+
+/* 訂單開始 */
+.order-content {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+.order-list {
+    background-color: pink;
+    height: 100%;
+    padding: 5px;
+}
+
+.order-price-info {
+    /* background-color: bisque; */
+    margin-top: auto;
+    border-top: 1px solid black;
+    padding: 10px 0px;
+}
+
+.order-price-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25em;
+    font-weight: 600;
+    padding: 5px;
+}
+
+/* 訂單結束 */
+
+.pay-page {
+    background-color: cadetblue;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.pay-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
