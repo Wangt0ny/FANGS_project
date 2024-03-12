@@ -1,7 +1,7 @@
 let seatList = [
     {
         seatNum: 1,
-        isMeal: true,
+        isMeal: false,
     }
     ,
     {
@@ -120,4 +120,5 @@ let seatList = [
     }
     ,
 ];
-localStorage.setItem("seatData", JSON.stringify(seatList))
+
+
