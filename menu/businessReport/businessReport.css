@@ -1,0 +1,29 @@
+.turnover-content {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 60px;
+}
+
+.turnover-info {
+    border: 1px solid rgb(135, 135, 135);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 10px 20px;
+    width: 40%;
+    border-radius: 10px;
+    background-color: rgba(247, 230, 174, 1);
+    box-shadow: inset 0px 0px 15px 5px rgb(239, 211, 118), 
+    3px 3px 10px 3px rgba(130, 130, 130, 0.5);
+}
+
+.turnover-info-title {
+    margin-bottom: 10px;
+}
+
+.turnover {
+    font-size: 1.5em;
+}
