@@ -95,6 +95,18 @@
 
             <!-- 提示訊息 -->
             <div id="message" class="message">提示訊息<i class="bi bi-check-circle-fill"></i></div>
+
+            <!-- 刪除確定 -->
+            <div id="delete-confirm" class="delete-confirm">
+                <div class="delete-confirm-content">
+                    <i class="bi bi-x-lg" onclick="closeDeleteConfirm()"></i>
+                    <div class="delete-confirm-text">確定要刪除?</div>
+                    <div class="delete-confirm-btn-group">
+                        <button id="cancel-btn" class="delete-confirm-btn btn-cancel" onclick="closeDeleteConfirm()">取消</button>
+                        <button id="delete-btn" class="delete-confirm-btn btn-sure">確定</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="/data.js"></script>

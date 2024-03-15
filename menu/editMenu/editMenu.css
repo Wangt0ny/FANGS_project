@@ -328,6 +328,7 @@ input[type="file"] {
     position: fixed;
     bottom: 30px;
     left: 25%;
+    border: 1px solid black;
     /* transform: translateX(50%); */
     padding: 10px 15px;
     font-size: 1.25em;
@@ -339,7 +340,7 @@ input[type="file"] {
 
 .message.show {
     display: block;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 1s;
 }
 @keyframes fadein {
     from {bottom: 0; opacity: 0;}
@@ -353,4 +354,60 @@ input[type="file"] {
 .bi-check-circle-fill {
     margin-left: 10px;
     color: rgba(25, 135, 84, 1);
+}
+
+.delete-confirm {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(247, 230, 174, 1);
+    border-radius: 5px;
+    min-width: 250px;
+}
+
+.delete-confirm-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 15px;
+}
+
+.delete-confirm-text {
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.delete-confirm-btn-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+.delete-confirm-btn {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 45%;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #fff;
+    border: 1px solid rgb(135, 135, 135);
+}
+
+.delete-confirm-btn.btn-sure {
+    background-color: rgb(215, 53, 69);
+}
+
+.delete-confirm-btn.btn-cancel {
+    background-color: rgb(179, 179, 179);
+}
+
+.delete-confirm-btn.btn-sure:active {
+    background-color: rgb(183, 46, 59);
+}
+
+.delete-confirm-btn.btn-cancel:active {
+    background-color: rgb(135, 135, 135);
 }

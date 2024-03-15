@@ -25,7 +25,7 @@ let generateMenuCard = (dom, datalist) => {
                                 </div>
                                 <div class="card-btn-group">
                                     <i  onclick="editItem(${id})" class="bi bi-pencil"></i>
-                                    <i  onclick="deleteItem(${id})" class="bi bi-trash"></i>
+                                    <i  onclick="deleteConfirm(${id})" class="bi bi-trash"></i>
                                 </div>
                             </div>
                         </div>   
@@ -135,6 +135,7 @@ document.getElementById("form-option").addEventListener("submit", function(e) {
 // 新增按鈕及修改按鈕功能
 document.querySelector(".plus-icon").addEventListener("click", function() {
     editItem();
+    closeDeleteConfirm()
     document.querySelector(".form-page").style.transform = "translateX(0%)";
 })
 
@@ -173,6 +174,7 @@ let editItem = (itemId) => {
         document.getElementById("form-submit-btn").setAttribute("onclick", "postNewForm()");
     }
     document.querySelector(".form-page").style.transform = "translateX(0%)";
+    closeDeleteConfirm();
 }
 
 let postUpdateForm = () => {
@@ -200,8 +202,10 @@ let postNewForm = () => {
 
 let deleteItem = (itemId) => {
     //post itemId
-    toastMessage("菜單已刪除");
+    let itemName = itemId.getElementsByClassName("card-title")[0].innerHTML;
+    toastMessage(`菜單已刪除${itemName}`);
     console.log("deleteItem")
+    closeDeleteConfirm();
 }
 
 // 提示訊息 msg:顯示訊息
@@ -209,6 +213,18 @@ let toastMessage = (msg) => {
     let message = document.getElementById("message");
     message.innerHTML = `${msg}<i class="bi bi-check-circle-fill"></i>`
     message.classList.add("show");
-    setTimeout(() => {message.classList.remove("show")}, 3000);
+    setTimeout(() => {message.classList.remove("show")}, 1500);
 }
 
+//刪除確認框
+let deleteConfirm = (id) => {
+    let deleteConfirm = document.getElementById("delete-confirm");
+    let deleteBtn = document.getElementById("delete-btn");
+    deleteConfirm.style.display = "block";
+    deleteBtn.setAttribute("onclick", `deleteItem(${id.id})`);
+}
+
+let closeDeleteConfirm = () => {
+    let deleteConfirm = document.getElementById("delete-confirm");
+    deleteConfirm.style.display = "none";
+}
