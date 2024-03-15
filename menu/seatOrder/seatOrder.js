@@ -2,11 +2,13 @@ let menuMeat = document.getElementById("meat");
 let menuSeafood = document.getElementById("seafood");
 let menuVegetable = document.getElementById("vegetable");
 let menuDumplings = document.getElementById("dumplings");
+let menuHotpot = document.getElementById("hotpot");
 
 let meatType = projectDataList.filter((x) => {return x.type === "meat"});
 let seafoodType = projectDataList.filter((x) => {return x.type === "seafood"});
 let vegetableType = projectDataList.filter((x) => {return x.type === "vegetable"});
 let dumplingsType = projectDataList.filter((x) => {return x.type === "dumplings"});
+let hotpotType = projectDataList.filter((x) => {return x.type === "hotpot"});
 
 let basket = JSON.parse(localStorage.getItem("data")) || [] ;
 
@@ -51,6 +53,7 @@ generateMenuCard(menuMeat, meatType);
 generateMenuCard(menuSeafood, seafoodType);
 generateMenuCard(menuVegetable, vegetableType);
 generateMenuCard(menuDumplings, dumplingsType);
+generateMenuCard(menuHotpot, hotpotType);
 
 // 品項類別選單
 function openMenu(pageName) {

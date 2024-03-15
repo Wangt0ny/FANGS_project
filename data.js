@@ -309,5 +309,28 @@ let projectDataList = [
         price: 3609,
         product: "切花枝揚",
         type: "dumplings",
+    },
+    {
+        id: "product40",
+        img: "/image/product/product11.webp",
+        price: 750,
+        product: "牛肉鍋",
+        type: "hotpot",
+    }
+    ,
+    {
+        id: "product41",
+        img: "/image/product/product11.webp",
+        price: 650,
+        product: "豬肉鍋",
+        type: "hotpot",
+    }
+    ,
+    {
+        id: "product42",
+        img: "/image/product/product11.webp",
+        price: 900,
+        product: "魚翅鍋",
+        type: "hotpot",
     }
 ];
