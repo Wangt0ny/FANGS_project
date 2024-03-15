@@ -17,13 +17,13 @@ let generateSeat = () => {
                 </div>
                 <div class="seat-option-content">
                     <a data-seatnum=${seatNum} class="seat-order-btn" href="../seatOrder/seatOrder.html">點餐/結帳</a>
-                    <a data-seatnum=${seatNum} class="seat-qrcode-btn">生成QR code</a>
+                    <a data-seatnum=${seatNum} class="seat-qrcode-btn">${search ? `<img class="qr-img" src=${search.qrCode}>` : "生成QR code"}</a>
                 </div>
             </div>
         `
     }).join("")
 }
-generateSeat()
+generateSeat();
 
 //開啟座位選單
 let displaySeatOption = () => {
@@ -65,13 +65,13 @@ let generateQRcode = (e) => {
             e.stopPropagation();
             //要傳給後端的桌號
             // let seatID = this.parentNode.previousElementSibling.getElementsByClassName("seat-number")[0].innerHTML;
-            let seatID = e.target.getAttribute('data-seatnum');
-            // console.log(seatID);
+            let seatID = (e.target.getAttribute('data-seatnum')) ? e.target.getAttribute('data-seatnum') : "1";
+            // console.log(e.target);
             let search = seatArray.find(x => x.seatNum == seatID);
             if(search  === undefined) {
                 seatArray.push({
                     seatNum: seatID,
-                    qrCode: "",
+                    qrCode: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/QR_code_of_Chinese_Wikipedia_main_page_20131019.svg/800px-QR_code_of_Chinese_Wikipedia_main_page_20131019.svg.png",
                 });
             }else {
                 return
