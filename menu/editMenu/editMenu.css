@@ -156,7 +156,8 @@
     right: 0;
     top: 76px;
     flex-direction: column;
-    width: 400px;
+    /* width: 400px; */
+    width: 50%;
     height: calc(100vh - 76px);
     border: 1px solid black;
     padding: 10px 20px 50px 20px;
@@ -318,4 +319,38 @@ input[type="file"] {
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
+}
+
+/* 提示訊息 */
+.message {
+    display: none;
+    background-color: #fff;
+    position: fixed;
+    bottom: 30px;
+    left: 25%;
+    /* transform: translateX(50%); */
+    padding: 10px 15px;
+    font-size: 1.25em;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 250px;
+    z-index: 50;
+}
+
+.message.show {
+    display: block;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+.bi-check-circle-fill {
+    margin-left: 10px;
+    color: rgba(25, 135, 84, 1);
 }

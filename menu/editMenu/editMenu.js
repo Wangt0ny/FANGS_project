@@ -176,6 +176,7 @@ let editItem = (itemId) => {
 }
 
 let postUpdateForm = () => {
+    toastMessage("菜單已更新");
     return
     let itemName = document.getElementById("item-name").value;
     let itemPrice = document.getElementById("item-price").value;
@@ -193,10 +194,21 @@ let postUpdateForm = () => {
 }
 
 let postNewForm = () => {
+    toastMessage("菜單已新增");
     console.log("New")
 }
 
 let deleteItem = (itemId) => {
     //post itemId
+    toastMessage("菜單已刪除");
     console.log("deleteItem")
 }
+
+// 提示訊息 msg:顯示訊息
+let toastMessage = (msg) => {
+    let message = document.getElementById("message");
+    message.innerHTML = `${msg}<i class="bi bi-check-circle-fill"></i>`
+    message.classList.add("show");
+    setTimeout(() => {message.classList.remove("show")}, 3000);
+}
+
