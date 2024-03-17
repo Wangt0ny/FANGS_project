@@ -1,3 +1,9 @@
+$(function(){
+    $.get("get/menu", function(data) {
+        console.log(data)
+    })
+})
+
 let menuMeat = document.getElementById("meat");
 let menuSeafood = document.getElementById("seafood");
 let menuVegetable = document.getElementById("vegetable");
@@ -53,6 +59,7 @@ function openMenu(pageName) {
     
     document.getElementById(pageName).style.display = "block";   
 }
+
 // 預設開啟類別
 document.getElementById("defaultOpen").click();
 
@@ -181,24 +188,55 @@ let editItem = (itemId) => {
 }
 
 let postUpdateForm = () => {
-    toastMessage("菜單已更新");
-    return
+    let formData = new FormData()
+    
     let itemName = document.getElementById("item-name").value;
     let itemPrice = document.getElementById("item-price").value;
     let selectType = document.getElementById("select-type").value;
     let itemImg = document.getElementById("item-img").files[0];
     
     if (itemName && itemPrice && itemImg) {
-        let formData = new FormData()
         formData.append('item-name', itemName)
         formData.append('item-price', itemPrice)
         formData.append('select-type', selectType)
         formData.append('item-img', itemImg)
+    }else {
+        return;
     }
-    
+    $.ajax({
+        url: "/menu/update",
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+    })
+    toastMessage("菜單已更新");
 }
 
 let postNewForm = () => {
+    let formData = new FormData();
+
+    let itemName = document.getElementById("item-name").value;
+    let itemPrice = document.getElementById("item-price").value;
+    let selectType = document.getElementById("select-type").value;
+    let itemImg = document.getElementById("item-img").files[0];
+    
+    if (itemName && itemPrice && itemImg) {
+        formData.append('item-name', itemName)
+        formData.append('item-price', itemPrice)
+        formData.append('select-type', selectType)
+        formData.append('item-img', itemImg)
+    }else {
+        return;
+    }
+    console.log($("#item-name"))
+    $.ajax({
+        url: "/menu/new",
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+    })
     toastMessage("菜單已新增");
     console.log("New")
 }
@@ -206,6 +244,9 @@ let postNewForm = () => {
 let deleteItem = (itemId) => {
     //post itemId
     let itemName = itemId.getElementsByClassName("card-title")[0].innerHTML;
+    $.post("/menu/delete", itemName, function(data) {
+            console.log(data);
+    })
     toastMessage(`菜單已刪除${itemName}`);
     console.log("deleteItem")
     closeDeleteConfirm();
