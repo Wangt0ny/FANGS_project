@@ -70,11 +70,13 @@ let getMonthTurnover = () => {
 getMonthTurnover();
 
 let getRank = () => {
-    let rankList = document.querySelectorAll(".sales-ranking-item");
-    console.log(rankList)
+    let salesRankingItem = document.querySelectorAll(".sales-ranking-item");
+    let salesRankingQuantity = document.querySelectorAll(".sales-ranking-quantity");
+    
     $.get("/business", function(data) {
-        for (let i = 0; i < rankList.length; i++) {
-            rankList[i].innerHTML = data[i]
+        for (let i = 0; i < salesRankingItem.length; i++) {
+            salesRankingItem[i].innerHTML = data[i];
+            salesRankingQuantity[i].innerHTML = data[i];
         }
     })
 }

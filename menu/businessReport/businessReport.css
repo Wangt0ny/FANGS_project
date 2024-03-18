@@ -66,6 +66,7 @@
 .sales-ranking-list {
     display: flex;
     align-items: center;
+    position: relative;
     justify-content: space-between;
     font-size: 1.25em;
     width: 100%;
@@ -76,6 +77,9 @@
 
 .sales-ranking-list > img {
     height: 1.25em;
+    position: absolute;
+    right: 0;
+    top: -20px;
 }
 
 .bar-chart-content {
