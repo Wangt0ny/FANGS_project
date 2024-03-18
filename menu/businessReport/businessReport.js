@@ -1,4 +1,8 @@
 (function() {
+    $.get("/business", function(data) {
+            
+    })
+
     const data = [
         { month: "1月", price: 10 },
         { month: "2月", price: 20 },
@@ -48,3 +52,30 @@
         }
     );
 })();
+
+let getDayTurnover = () => {
+    let dayTurnover = document.getElementById("day-turnover");
+    $.get("/business", function(data) {
+        dayTurnover.innerHTML = data;
+    })
+}
+getDayTurnover();
+
+let getMonthTurnover = () => {
+    let monthTurnover = document.getElementById("month-turnover");
+    $.get("/business", function(data) {
+        monthTurnover.innerHTML = data;
+    })
+}
+getMonthTurnover();
+
+let getRank = () => {
+    let rankList = document.querySelectorAll(".sales-ranking-item");
+    console.log(rankList)
+    $.get("/business", function(data) {
+        for (let i = 0; i < rankList.length; i++) {
+            rankList[i].innerHTML = data[i]
+        }
+    })
+}
+getRank();

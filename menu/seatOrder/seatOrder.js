@@ -1,3 +1,8 @@
+// $.get("/menulist", function(data) {
+            
+// })
+
+
 let menuMeat = document.getElementById("meat");
 let menuSeafood = document.getElementById("seafood");
 let menuVegetable = document.getElementById("vegetable");
@@ -201,6 +206,34 @@ let sentOrderBtn = () => {
     let cartBtnList = document.getElementsByClassName("cart-btn");
     for (let i = 0; i < cartBtnList.length; i++) {
         cartBtnList[i].addEventListener("click", () => {
+            if (cartBtnList[i].id) {
+                $.ajax({
+                    url: "",
+                    method: "POST",
+                    data: JSON.stringify(basket),
+                    contentType: "application/json",
+                    success: (result) => {
+                        basket = [];
+                        console.log(result)
+                    }
+                })
+
+                console.log("notsent")
+            }else {
+                $.ajax({
+                    url: "",
+                    method: "POST",
+                    data: JSON.stringify(basket),
+                    contentType: "application/json",
+                    success: (result) => {
+                        basket = [];
+                        console.log(result)
+                    }
+                })
+
+                console.log("sent")
+            }
+    
             basket = [];
             localStorage.setItem("data", JSON.stringify(basket));
             generateOrderItem();
@@ -209,11 +242,7 @@ let sentOrderBtn = () => {
             generateMenuCard(menuSeafood, seafoodType);
             generateMenuCard(menuVegetable, vegetableType);
             generateMenuCard(menuDumplings, dumplingsType);
-            if (cartBtnList[i].id) {
-                console.log("notsent")
-            }else {
-                console.log("sent")
-            }
+            
         })  
     }
 }
@@ -222,6 +251,35 @@ sentOrderBtn();
 //生成訂單品項
 let generateOrderItem = () => {
     let orderList = document.getElementById("order-list")
+    // $.get("url", function(data) {
+    //     if (data.length !== 0){
+    //         //cart not empty
+    //         return orderList.innerHTML = data.map((x) => {
+    //             let {id , item} = x;//物件解構賦值變數
+                
+    //             let search = projectDataList.find((y) => y.id === id) || [];
+    //             // console.log(search);
+    //             return `
+    //                 <div class="order-item">
+    //                     <div class="order-info">
+    //                         <p class="order-info-title">${search.product}</p>
+    //                         <div class="order-info-price">$${search.price}</div>
+    //                     </div>
+    //                     <div class="order-info-quantity"><span>${item}</span></div>
+    //                     <i onclick="deleteOrder(${id})" class="bi bi-trash"></i>
+    //                 </div>
+    //             `
+    //         }).join("")
+    //     }
+    //     else {
+    //         //cart empty
+            
+    //         orderList.innerHTML = `
+    //         <div class="no-item"><h4>訂單是空的唷</h4></div>
+    //         `;
+    //     }     
+    // })
+
     if (basket.length !== 0){
         //cart not empty
         return orderList.innerHTML = basket.map((x) => {

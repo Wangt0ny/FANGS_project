@@ -66,7 +66,16 @@ let generateQRcode = (e) => {
             //要傳給後端的桌號
             // let seatID = this.parentNode.previousElementSibling.getElementsByClassName("seat-number")[0].innerHTML;
             let seatID = (e.target.getAttribute('data-seatnum')) ? e.target.getAttribute('data-seatnum') : "1";
-            // console.log(e.target);
+            
+            $.ajax({
+                url: "",
+                method: "POST",
+                data: seatID,
+            })
+            .then(function(result){
+                console.log(result)
+            })
+            
             let search = seatArray.find(x => x.seatNum == seatID);
             if(search  === undefined) {
                 seatArray.push({

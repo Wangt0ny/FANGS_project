@@ -10,6 +10,10 @@ let orderList = document.getElementById("order-list");
 //生成訂單品項
 let generateOrderItem = (dom) => {
     //dom參數
+    // $.get("/order", function(data) {
+            
+    // })
+
     if (basket.length !== 0){
         //cart not empty
         return dom.innerHTML = basket.map((x) => {
@@ -44,6 +48,10 @@ let getOrderPrice = (fee) => {
     let serviceFee = document.getElementById("service-fee");
     let orderTotal = document.getElementById("order-total");
     
+    // $.get("/order/money", function(data) {
+
+    // })
+
     if (basket.length !== 0) {
         let amount = basket.map((x) => {
             let {id, item} = x;
